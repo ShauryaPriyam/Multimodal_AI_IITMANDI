@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FloodWatch — 2026-08-26</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    color: #172033;
+    font-family: "Noto Sans", "Noto Sans Devanagari", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  header { background: #0a2540; color: #fff; padding: 0.9rem 1.1rem; }
+  header h1 { margin: 0; font-size: 1.35rem; font-weight: 650; letter-spacing: -0.02em; }
+  header p { margin: 0.2rem 0 0; font-size: 0.95rem; }
+  .tabs {
+    display: flex;
+    gap: 0.35rem;
+    padding: 0.65rem 1rem 0;
+    background: #f3f6fa;
+    border-bottom: 1px solid #d5dbe6;
+    overflow-x: auto;
+  }
+  .tabs button {
+    font: inherit;
+    font-size: 0.95rem;
+    padding: 0.55rem 0.95rem;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    background: transparent;
+    color: #0a2540;
+    cursor: pointer;
+    border-radius: 0.35rem 0.35rem 0 0;
+    white-space: nowrap;
+  }
+  .tabs button[aria-selected="true"] {
+    background: #fff;
+    border-color: #d5dbe6;
+    margin-bottom: -1px;
+    border-bottom: 1px solid #fff;
+    font-weight: 650;
+  }
+  main { flex: 1 0 auto; display: flex; flex-direction: column; }
+  .panel { flex: 1 0 auto; }
+  .panel[hidden] { display: none; }
+  .frame-panel { display: flex; flex-direction: column; min-height: 70vh; }
+  .frame-panel iframe { flex: 1 1 auto; width: 100%; min-height: 70vh; border: 0; background: #fff; }
+  .report-bar { padding: 0.65rem 1rem; border-bottom: 1px solid #d5dbe6; }
+  .report-bar button {
+    font: inherit;
+    background: #0a2540;
+    color: #fff;
+    border: 0;
+    padding: 0.5rem 0.85rem;
+    cursor: pointer;
+  }
+  .missing { margin: 1rem; padding: 1rem 1.1rem; background: #f6f8fb; border: 1px solid #d5dbe6; }
+  #panel-numbers { padding: 1rem 1.1rem 1.5rem; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.75rem; }
+  .card { border: 1px solid #e1e6ee; padding: 0.75rem 0.85rem; background: #fff; }
+  .card.wide { grid-column: 1 / -1; }
+  .k { color: #5c6b7a; font-size: 0.8rem; }
+  .v { margin-top: 0.2rem; font-size: 1.45rem; font-weight: 650; overflow-wrap: anywhere; }
+  .card.wide .v { font-size: 1rem; font-weight: 400; }
+  h2 { margin: 1.35rem 0 0.45rem; font-size: 1.05rem; }
+  h3 { margin: 1rem 0 0.35rem; font-size: 0.95rem; }
+  .table-wrap { overflow-x: auto; max-width: 100%; }
+  table { width: 100%; border-collapse: collapse; }
+  table.data { width: max-content; min-width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.4rem 0.5rem; border-bottom: 1px solid #e1e6ee; }
+  th { color: #5c6b7a; font-weight: 650; }
+  ul { margin: 0.2rem 0 0.4rem; padding-left: 1.2rem; }
+  footer { padding: 1rem 1.1rem 1.4rem; border-top: 1px solid #d5dbe6; color: #1c2430; font-size: 0.82rem; line-height: 1.45; }
+  footer p { margin: 0.28rem 0; overflow-wrap: anywhere; }
+  @media (max-width: 640px) {
+    header h1 { font-size: 1.2rem; }
+    .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding-left: 0.35rem; padding-right: 0.35rem; }
+    .tabs button { width: 100%; min-width: 0; padding: 0.6rem 0.15rem; text-align: center; }
+    .v { font-size: 1.25rem; }
+    table.kv, table.kv tr, table.kv th, table.kv td { display: block; width: 100%; }
+    table.kv th { border: 0; padding-bottom: 0; }
+    table.kv td { padding-top: 0.1rem; }
+  }
+</style>
+</head>
+<body>
+<header>
+<h1>FloodWatch</h1>
+<p>2026-08-26</p>
+</header>
+<div class="tabs" role="tablist">
+<button type="button" role="tab" id="tab-map" data-tab="map" aria-selected="true" aria-controls="panel-map">Map</button>
+<button type="button" role="tab" id="tab-report" data-tab="report" aria-selected="false" aria-controls="panel-report">Report</button>
+<button type="button" role="tab" id="tab-numbers" data-tab="numbers" aria-selected="false" aria-controls="panel-numbers">Numbers</button>
+</div>
+<main>
+<section class="panel frame-panel" role="tabpanel" id="panel-map" data-panel="map" aria-labelledby="tab-map">
+<iframe title="Map" src="dashboard.html"></iframe>
+</section>
+<section class="panel frame-panel" role="tabpanel" id="panel-report" data-panel="report" aria-labelledby="tab-report" hidden>
+<div class="report-bar"><button type="button" id="print-report">Print / Save as PDF</button></div><iframe id="report-frame" title="Report" src="situation_report.html"></iframe>
+</section>
+<section class="panel" role="tabpanel" id="panel-numbers" data-panel="numbers" aria-labelledby="tab-numbers" hidden>
+<script type="application/json" id="facts-data">{"event_date": "2026-08-26", "osm_snapshot": "2026-07-27", "imagery": {"s1_pre": "2026-08-16", "s1_post": "2026-08-28", "orbit": "ASCENDING", "s1_valid_pct": "99.7", "s2_used": false, "s2_clear_pct": "11.5"}, "flood_area_km2": "0.07", "damage": {"buildings_total": "2660", "buildings_hit": "30", "buildings_at_risk": "15", "road_km_total": "192.8", "road_km_hit": "0.39", "bridges_total": "18", "bridges_hit": "1", "bridges_at_risk": "0"}, "settlements": {"total": "40", "cut_off_from_hospital": ["热索"], "cut_off_from_town": "not assessed: no town found in OSM data for this area", "detour_to_hospital": [], "inside_flood_zone": ["热索"], "analysed_for_hospital_access": "24", "no_road_data_within_500m": "14"}, "flood_path_settlements": [{"name": "रसुवागढी", "place": "hamlet", "km_downstream": "0.0", "dist_to_path_m": "92.0"}, {"name": "热索", "place": "village", "km_downstream": "0.0", "dist_to_path_m": "358.0"}, {"name": "लिङलिङ", "place": "hamlet", "km_downstream": "8.6", "dist_to_path_m": "316.0"}, {"name": "", "place": "hamlet", "km_downstream": "13.0", "dist_to_path_m": "318.0"}, {"name": "हाकु बेसी", "place": "hamlet", "km_downstream": "23.1", "dist_to_path_m": "363.0"}], "limitations": ["Sentinel satellites revisit every few days; no early warning.", "Damage is inferred from overlap with the flood mask, not field-verified.", "OSM is incomplete in remote areas; roads missing from OSM cannot be analysed.", "Cut-off status depends on a few road segments in OpenStreetMap, which here is close to a single route; one flagged segment can isolate a whole branch.", "Results are sensitive to detection thresholds: more permissive settings give a much larger affected area and more cut-off settlements.", "No town was found in the OSM data for this area, so access to a town was not assessed."], "flood_mask_kinds": ["debris"], "flood_mask_note": "Mask contains radar-change (debris-affected) areas only; no open water was detected."}</script><div id="numbers-root"></div>
+</section>
+</main>
+<footer>
+<p>Contains modified Copernicus Sentinel data 2026.</p><p>Produced using Copernicus WorldDEM-30 © DLR e.V. 2010–2014 and © Airbus Defence and Space GmbH 2014–2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.</p><p>© OpenStreetMap contributors.</p><p>Educational prototype, not an operational tool. Not field-verified.</p>
+</footer>
+<script>
+(function () {
+  function isScalar(value) {
+    return value === null || typeof value === "string" || typeof value === "number" || typeof value === "boolean";
+  }
+
+  function formatScalar(value, key) {
+    if (value === null) return "null";
+    if (typeof value === "string") {
+      if (value.trim() === "") return "(unnamed)";
+      return value;
+    }
+    if (typeof value === "boolean") return value ? "true" : "false";
+    if (typeof value === "number") return JSON.stringify(value);
+    return String(value);
+  }
+
+  function renderList(items, key) {
+    var allObjects = items.length > 0 && items.every(function (item) {
+      return item !== null && typeof item === "object" && !Array.isArray(item);
+    });
+    if (allObjects) return renderObjectTable(items);
+    var ul = document.createElement("ul");
+    items.forEach(function (item) {
+      var li = document.createElement("li");
+      if (isScalar(item)) li.textContent = formatScalar(item, key);
+      else if (Array.isArray(item)) li.appendChild(renderList(item, key));
+      else renderObject(item, li);
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  function renderObjectTable(rows) {
+    var columns = [];
+    rows.forEach(function (row) {
+      Object.keys(row).forEach(function (key) {
+        if (columns.indexOf(key) === -1) columns.push(key);
+      });
+    });
+    var wrap = document.createElement("div");
+    wrap.className = "table-wrap";
+    var table = document.createElement("table");
+    table.className = "data";
+    var head = document.createElement("tr");
+    columns.forEach(function (key) {
+      var th = document.createElement("th");
+      th.textContent = key;
+      head.appendChild(th);
+    });
+    var thead = document.createElement("thead");
+    thead.appendChild(head);
+    table.appendChild(thead);
+    var body = document.createElement("tbody");
+    rows.forEach(function (row) {
+      var tr = document.createElement("tr");
+      columns.forEach(function (key) {
+        var td = document.createElement("td");
+        putValue(td, row[key], key);
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    });
+    table.appendChild(body);
+    wrap.appendChild(table);
+    return wrap;
+  }
+
+  function putValue(parent, value, key) {
+    if (isScalar(value)) {
+      parent.textContent = formatScalar(value, key);
+      return;
+    }
+    if (Array.isArray(value)) {
+      parent.appendChild(renderList(value, key));
+      return;
+    }
+    if (value && typeof value === "object") renderObject(value, parent);
+  }
+
+  function renderObject(obj, parent) {
+    var scalars = [];
+    var rest = [];
+    Object.keys(obj).forEach(function (key) {
+      (isScalar(obj[key]) ? scalars : rest).push(key);
+    });
+    if (scalars.length) {
+      var wrap = document.createElement("div");
+      wrap.className = "table-wrap";
+      var table = document.createElement("table");
+      table.className = "kv";
+      scalars.forEach(function (key) {
+        var tr = document.createElement("tr");
+        var th = document.createElement("th");
+        th.textContent = key;
+        var td = document.createElement("td");
+        td.textContent = formatScalar(obj[key], key);
+        tr.appendChild(th);
+        tr.appendChild(td);
+        table.appendChild(tr);
+      });
+      wrap.appendChild(table);
+      parent.appendChild(wrap);
+    }
+    rest.forEach(function (key) {
+      parent.appendChild(renderSection(key, obj[key], 1));
+    });
+  }
+
+  function renderSection(key, value, level) {
+    var section = document.createElement("section");
+    var heading = document.createElement(level === 0 ? "h2" : "h3");
+    heading.textContent = key;
+    section.appendChild(heading);
+    putValue(section, value, key);
+    return section;
+  }
+
+  function renderCard(key, value) {
+    var card = document.createElement("article");
+    card.className = "card";
+    if (typeof value === "string" && value.length > 80) card.className = "card wide";
+    var label = document.createElement("div");
+    label.className = "k";
+    label.textContent = key;
+    var shown = document.createElement("div");
+    shown.className = "v";
+    shown.textContent = formatScalar(value, key);
+    card.appendChild(label);
+    card.appendChild(shown);
+    return card;
+  }
+
+  function renderRoot(data, parent) {
+    if (isScalar(data)) {
+      parent.textContent = formatScalar(data, "");
+      return;
+    }
+    if (Array.isArray(data)) {
+      parent.appendChild(renderList(data, ""));
+      return;
+    }
+    var scalars = [];
+    var rest = [];
+    Object.keys(data).forEach(function (key) {
+      (isScalar(data[key]) ? scalars : rest).push(key);
+    });
+    if (scalars.length) {
+      var cards = document.createElement("div");
+      cards.className = "cards";
+      scalars.forEach(function (key) {
+        cards.appendChild(renderCard(key, data[key]));
+      });
+      parent.appendChild(cards);
+    }
+    rest.forEach(function (key) {
+      parent.appendChild(renderSection(key, data[key], 0));
+    });
+  }
+
+  var tabs = document.querySelectorAll("[data-tab]");
+  var panels = document.querySelectorAll("[data-panel]");
+  function show(id) {
+    tabs.forEach(function (tab) {
+      var on = tab.getAttribute("data-tab") === id;
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    panels.forEach(function (panel) {
+      if (panel.getAttribute("data-panel") === id) panel.removeAttribute("hidden");
+      else panel.setAttribute("hidden", "");
+    });
+  }
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () { show(tab.getAttribute("data-tab")); });
+  });
+
+  var printButton = document.getElementById("print-report");
+  if (printButton) {
+    printButton.addEventListener("click", function () {
+      var frame = document.getElementById("report-frame");
+      if (!frame || !frame.contentWindow) return;
+      frame.contentWindow.focus();
+      frame.contentWindow.print();
+    });
+  }
+
+  var dataEl = document.getElementById("facts-data");
+  var mount = document.getElementById("numbers-root");
+  if (!dataEl || !mount) return;
+  try {
+    renderRoot(JSON.parse(dataEl.textContent), mount);
+  } catch (err) {
+    mount.textContent = "facts.json could not be read.";
+  }
+})();
+</script>
+</body>
+</html>
