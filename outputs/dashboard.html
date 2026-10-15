@@ -79,26 +79,6 @@
 
         
     
-            var tile_layer_08b849114b6cad8315123c5b48387394 = L.tileLayer(
-                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {
-  "minZoom": 0,
-  "maxZoom": 19,
-  "maxNativeZoom": 19,
-  "noWrap": false,
-  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
-  "subdomains": "abc",
-  "detectRetina": false,
-  "tms": false,
-  "opacity": 1,
-}
-
-            );
-        
-    
-            tile_layer_08b849114b6cad8315123c5b48387394.addTo(map_55c9f29ee85682e12187a0e1d1edbc00);
-        
-    
             var tile_layer_446b42e602ba4ddb62d9d31cf4962f2a = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=cb1_4l1m_1_94480fc101dae44edc047b13",
                 {
@@ -114,6 +94,9 @@
 }
 
             );
+        
+    
+            tile_layer_446b42e602ba4ddb62d9d31cf4962f2a.addTo(map_55c9f29ee85682e12187a0e1d1edbc00);
         
     
             var rectangle_07165d7de1ec64132c7556f60222fd68 = L.rectangle(
@@ -6969,7 +6952,6 @@
     
             var layer_control_6eb1dde532a7336e1775984aa8ba8968_layers = {
                 base_layers : {
-                    "Basemap: OpenStreetMap" : tile_layer_08b849114b6cad8315123c5b48387394,
                     "Basemap: light" : tile_layer_446b42e602ba4ddb62d9d31cf4962f2a,
                 },
                 overlays :  {
