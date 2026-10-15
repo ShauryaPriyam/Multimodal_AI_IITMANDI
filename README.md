@@ -167,4 +167,8 @@ See the limitations in `FloodWatch_Report.docx`. The most important ones:
 
 ## Team
 
-[Full names of all team members]
+Team name : Timepass
+
+Nitin raj (Leader)
+shaurya priyam
+Ratnadeep Paul
