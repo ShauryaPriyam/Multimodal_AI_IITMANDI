@@ -4,77 +4,229 @@
  "imagery": {
   "s1_pre": "2026-08-16",
   "s1_post": "2026-08-28",
+  "s1_gap_days": 12,
   "orbit": "ASCENDING",
   "s1_valid_pct": 99.7,
-  "s2_used": false,
-  "s2_clear_pct": 11.5
+  "s2_used": true,
+  "s2_clear_pct": 18.9
  },
- "flood_area_km2": 0.07,
+ "flood_area_km2": 9.77,
  "damage": {
-  "buildings_total": 2660,
-  "buildings_hit": 30,
-  "buildings_at_risk": 15,
-  "road_km_total": 192.8,
-  "road_km_hit": 0.39,
-  "bridges_total": 18,
-  "bridges_hit": 1,
-  "bridges_at_risk": 0
+  "buildings_total": 39477,
+  "buildings_hit": 1796,
+  "buildings_at_risk": 820,
+  "road_km_total": 4155.4,
+  "road_km_hit": 35.51,
+  "bridges_total": 149,
+  "bridges_hit": 15,
+  "bridges_at_risk": 3,
+  "buildings_scope": "OSM buildings within about 1 km of the detected mask"
  },
  "settlements": {
-  "total": 40,
+  "total": 380,
   "cut_off_from_hospital": [
-   "热索"
+   "(unnamed hamlet)",
+   "(unnamed hamlet)",
+   "(unnamed hamlet)",
+   "Somdang",
+   "आमाछोदिङ्मो",
+   "गोगने",
+   "गोठेन",
+   "गोदाम",
+   "ग्रे",
+   "जर्सा डाँडा",
+   "ठुलो भार्खु",
+   "तातोपानी",
+   "तेटाङचेट",
+   "नौविसे फाँट",
+   "पाजुङ",
+   "बाहुनडाँडा",
+   "बेत्रावती",
+   "ब्रिमडाङ",
+   "भञ्ज्याङ",
+   "भैंसे",
+   "भ्रजम",
+   "मैलुङ",
+   "रसुवागढी",
+   "लिङलिङ",
+   "सानाे भार्खु",
+   "सिरुचेत",
+   "हाकु बेसी"
   ],
-  "cut_off_from_town": "not assessed: no town found in OSM data for this area",
-  "detour_to_hospital": [],
+  "cut_off_from_town": [
+   "(unnamed hamlet)",
+   "(unnamed hamlet)",
+   "Resuo",
+   "Somdang",
+   "आमाछोदिङ्मो",
+   "गोगने",
+   "गोठेन",
+   "गोदाम",
+   "गोसाइँकुण्ड",
+   "ग्रे",
+   "जर्सा डाँडा",
+   "ठुलो भार्खु",
+   "तातोपानी",
+   "तेटाङचेट",
+   "नौविसे फाँट",
+   "पाजुङ",
+   "बाहुनडाँडा",
+   "बेत्रावती",
+   "ब्रिमडाङ",
+   "भञ्ज्याङ",
+   "भैंसे",
+   "भ्रजम",
+   "मैलुङ",
+   "रसुवागढी",
+   "लिङलिङ",
+   "सानाे भार्खु",
+   "सिरुचेत",
+   "हाकु बेसी"
+  ],
+  "detour_to_hospital": [
+   "National Rainbow Trout Research Station, Dhunche",
+   "Pasture and Fodder Research Station, Dhunche",
+   "ठाडे"
+  ],
   "inside_flood_zone": [
-   "热索"
+   "(unnamed hamlet)",
+   "Resuo",
+   "Somdang",
+   "उत्तरगया",
+   "गणेशस्थान",
+   "गोसाइँकुण्ड",
+   "ग्याल्मी गाउँ",
+   "डाल्फेडी",
+   "दुप्चेश्वर",
+   "नौविसे फाँट",
+   "बडहरे",
+   "बेत्रावती",
+   "भैंसे",
+   "रसुवागढी",
+   "लिङलिङ"
   ],
-  "analysed_for_hospital_access": 24,
-  "no_road_data_within_500m": 14
+  "analysed_for_hospital_access": 243,
+  "no_road_data_within_500m": 96,
+  "cut_off_cross_border": [
+   "Bangxong",
+   "Baxuequ’an",
+   "Boba",
+   "Cha",
+   "Chaggang",
+   "Chungsa",
+   "Congdü",
+   "Dopuggyêpug",
+   "Goba",
+   "Jang",
+   "Kabang",
+   "Kyephu",
+   "Kyirong",
+   "Kyirong community",
+   "Labi",
+   "Langqu",
+   "Nainub",
+   "Naixar",
+   "Resuo",
+   "Salê",
+   "Salê",
+   "Sêrqung",
+   "Tobu",
+   "Tsongdu",
+   "Zhuocun"
+  ],
+  "not_connected_before_to_hospital": 41
  },
  "flood_path_settlements": [
   {
    "name": "रसुवागढी",
    "place": "hamlet",
    "km_downstream": 0.0,
-   "dist_to_path_m": 92.0
+   "dist_to_path_m": 95.0
   },
   {
-   "name": "热索",
+   "name": "Resuo",
    "place": "village",
    "km_downstream": 0.0,
-   "dist_to_path_m": 358.0
+   "dist_to_path_m": 359.0
   },
   {
    "name": "लिङलिङ",
    "place": "hamlet",
-   "km_downstream": 8.6,
+   "km_downstream": 8.5,
    "dist_to_path_m": 316.0
   },
   {
-   "name": "",
+   "name": "(unnamed hamlet)",
    "place": "hamlet",
    "km_downstream": 13.0,
-   "dist_to_path_m": 318.0
+   "dist_to_path_m": 322.0
   },
   {
    "name": "हाकु बेसी",
    "place": "hamlet",
    "km_downstream": 23.1,
-   "dist_to_path_m": 363.0
+   "dist_to_path_m": 359.0
+  },
+  {
+   "name": "मैलुङ",
+   "place": "hamlet",
+   "km_downstream": 32.7,
+   "dist_to_path_m": 125.0
+  },
+  {
+   "name": "सिम्ले",
+   "place": "hamlet",
+   "km_downstream": 38.3,
+   "dist_to_path_m": 161.0
+  },
+  {
+   "name": "सालिम भित्ता",
+   "place": "hamlet",
+   "km_downstream": 39.4,
+   "dist_to_path_m": 347.0
+  },
+  {
+   "name": "शान्ति बजार",
+   "place": "hamlet",
+   "km_downstream": 40.5,
+   "dist_to_path_m": 460.0
+  },
+  {
+   "name": "नौविसे फाँट",
+   "place": "hamlet",
+   "km_downstream": 44.1,
+   "dist_to_path_m": 198.0
+  },
+  {
+   "name": "बेत्रावती",
+   "place": "hamlet",
+   "km_downstream": 45.7,
+   "dist_to_path_m": 182.0
+  },
+  {
+   "name": "भैंसे",
+   "place": "hamlet",
+   "km_downstream": 48.0,
+   "dist_to_path_m": 150.0
   }
  ],
  "limitations": [
   "Sentinel satellites revisit every few days; no early warning.",
-  "Damage is inferred from overlap with the flood mask, not field-verified.",
-  "OSM is incomplete in remote areas; roads missing from OSM cannot be analysed.",
-  "Cut-off status depends on a few road segments in OpenStreetMap, which here is close to a single route; one flagged segment can isolate a whole branch.",
-  "Results are sensitive to detection thresholds: more permissive settings give a much larger affected area and more cut-off settlements.",
-  "No town was found in the OSM data for this area, so access to a town was not assessed."
+  "Overlap with the detected mask is not confirmed damage; nothing here is field-verified.",
+  "The detected area is a minimum: narrow or steep gorge flow paths and radar-shadow areas can be missed.",
+  "OpenStreetMap is incomplete in remote valleys; roads and buildings missing from OSM cannot be analysed.",
+  "Cut-off status depends on a few OSM road segments; one flagged segment can isolate a whole branch.",
+  "Buildings were loaded only within about 1 km of the detected mask, so the building total is not a whole-area total.",
+  "Detected area depends on the radar change threshold (radar only): 1.56 km2 at 4.0 dB; 4.59 km2 at 3.0 dB; 29.13 km2 at 2.0 dB.",
+  "Settlements with Chinese-script names are probably across the border; their road links to Nepali hospitals are not a Nepal-side result."
  ],
  "flood_mask_kinds": [
-  "debris"
+  "debris",
+  "water"
  ],
- "flood_mask_note": "Mask contains radar-change (debris-affected) areas only; no open water was detected."
+ "threshold_sensitivity_km2": {
+  "2.0": 29.13,
+  "3.0": 4.59,
+  "4.0": 1.56
+ }
 }
